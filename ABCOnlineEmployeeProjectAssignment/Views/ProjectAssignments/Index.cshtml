@@ -1,0 +1,78 @@
+﻿@model IEnumerable<ABCOnlineEmployeeProjectAssignment.Models.ProjectAssignment>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+<p>
+    @Html.ActionLink("Create New", "Create") | @Html.ActionLink("Back to List", "Index", "ProjectAssignments")
+</p>
+@if (Model.Count() == 0)
+{
+    <p>There is no project assigned to show</p>
+}
+else
+{
+    
+    <div class="form-actions no-color">
+        @using (Html.BeginForm("Index", "ProjectAssignments", FormMethod.Post))
+        {
+            @Html.DropDownList("EmployeeNumber", ViewBag.EmployeeNumber as SelectList, "Select an Employee", htmlAttributes: new { @class = "form-control" })
+            <br />
+            <input type="submit" value="List Projects assigned to this employee" class="btn btn-default" />
+        }
+        <br />
+    </div>
+    <br />
+    <br />
+    <table class="table">
+        <tr>
+
+            <th>
+                Employee
+            </th>
+            <th>
+                Project Title
+            </th>
+            <th>
+                Assigned Date
+            </th>
+            <th>
+                Submitted Date
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Employee.FirstName)
+                    @Html.DisplayFor(modelItem => item.Employee.LastName) -
+                    @Html.DisplayFor(modelItem => item.Employee.EmployeeNumber)
+
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Project.ProjectTitle) -
+                    @Html.DisplayFor(modelItem => item.Project.ProjectCode)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AssignedDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SubmittedDate)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.ProjectAssignmentId }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.ProjectAssignmentId }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.ProjectAssignmentId })
+                </td>
+            </tr>
+        }
+
+    </table>
+}
+
+

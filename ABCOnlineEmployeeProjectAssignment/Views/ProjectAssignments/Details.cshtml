@@ -1,0 +1,57 @@
+﻿@model ABCOnlineEmployeeProjectAssignment.Models.ProjectAssignment
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>ProjectAssignment</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Project Title
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Project.ProjectTitle)
+        </dd>
+        <dt>
+            Project Code
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Project.ProjectCode)
+        </dd>
+
+        <dt>
+            Assigned To
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Employee.FirstName)
+            @Html.DisplayFor(model => model.Employee.LastName),
+            @Html.DisplayFor(model => model.Employee.EmployeeNumber)
+        </dd>
+
+        <dt>
+            Assigned Date
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AssignedDate)
+        </dd>
+
+        <dt>
+            Submitted Date
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SubmittedDate)
+        </dd>
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ProjectAssignmentId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
